@@ -1,20 +1,24 @@
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
+import { Field, InputType, ObjectType, PickType } from '@nestjs/graphql';
 import { IsEmail, IsEnum, IsString } from 'class-validator';
+import { GraphQLEnumType } from 'graphql';
+
 import { CoreOutput } from 'src/common/dtos/common.dto';
-import { userRole } from '../entities/user.entity';
+import { User, UserRole } from '../entities/user.entity';
+
+const UserRoleGQ = new GraphQLEnumType({
+  name: 'UserRole',
+  values: {
+    Host: { value: 'Host' },
+    Listener: { value: 'Listener' },
+  },
+});
 
 @InputType()
-export class CreateAccountInput {
-  @Field(type => String)
-  @IsEmail()
-  email: string;
-  @Field(type => String)
-  @IsString()
-  password: string;
-  @Field(type => String)
-  @IsEnum(userRole)
-  role: userRole;
-}
+export class CreateAccountInput extends PickType(User, [
+  'email',
+  'password',
+  'role',
+]) {}
 
 @ObjectType()
 export class CreateAccountOutput extends CoreOutput {}

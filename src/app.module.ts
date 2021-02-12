@@ -7,6 +7,7 @@ import { UserResolver } from './user/user.resolver';
 import { UserService } from './user/user.service';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
+import { User } from './user/entities/user.entity';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import * as Joi from 'joi';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       synchronize: true,
+      entities: [User],
     }),
     UserModule,
   ],

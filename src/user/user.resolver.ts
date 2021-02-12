@@ -12,9 +12,9 @@ import { UserService } from './user.service';
 export class UserResolver {
   constructor(private userService: UserService) {}
   @Mutation(returns => CreateAccountOutput)
-  createAccount(
+  async createAccount(
     @Args('input') createAccountInput: CreateAccountInput,
-  ): CreateAccountOutput {
+  ): Promise<CreateAccountOutput> {
     return this.userService.createAccount(createAccountInput);
   }
 }

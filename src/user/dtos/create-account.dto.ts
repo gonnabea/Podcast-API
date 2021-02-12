@@ -3,6 +3,7 @@ import { IsEmail, IsEnum, IsString } from 'class-validator';
 import { GraphQLEnumType } from 'graphql';
 
 import { CoreOutput } from 'src/common/dtos/common.dto';
+import { Column } from 'typeorm';
 import { User, UserRole } from '../entities/user.entity';
 
 @InputType()

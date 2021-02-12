@@ -19,6 +19,7 @@ registerEnumType(UserRole, { name: 'UserRole' });
 export class User {
   @Field()
   @PrimaryGeneratedColumn()
+  @Column()
   id: number;
 
   @Field(type => String)

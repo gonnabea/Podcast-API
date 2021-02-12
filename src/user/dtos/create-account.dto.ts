@@ -5,14 +5,6 @@ import { GraphQLEnumType } from 'graphql';
 import { CoreOutput } from 'src/common/dtos/common.dto';
 import { User, UserRole } from '../entities/user.entity';
 
-const UserRoleGQ = new GraphQLEnumType({
-  name: 'UserRole',
-  values: {
-    Host: { value: 'Host' },
-    Listener: { value: 'Listener' },
-  },
-});
-
 @InputType()
 export class CreateAccountInput extends PickType(User, [
   'email',
